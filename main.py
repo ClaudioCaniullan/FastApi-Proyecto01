@@ -89,11 +89,15 @@ def show_person(
        min_length=1, 
        max_length=50,
        title = "Person Name",
-       description = "this is the person name, it's between 1 and 50 character"),
+       description = "this is the person name, it's between 1 and 50 character",
+       example = "Maria"),
+       
     age : str = Query(
         ...,
         title= "Person Age",
-        description= "This is the age, it's required") # parametro obligatorio (aunque en todo query parameter debe ser opcional)
+        description= "This is the age, it's required",
+        example = 25) # parametro obligatorio (aunque en todo query parameter debe ser opcional)
+        
 ): 
     return {name: age}
 
@@ -101,7 +105,11 @@ def show_person(
 # Validaciones: Path Parameters
 @app.get("/person/detail/{person_id}")
 def show_person(
-    person_id : int = Path(...,gt= 0) #path parameter obligatorio
+    person_id : int = Path(
+    ...,
+    gt= 0,
+    example= 123
+    ) #path parameter obligatorio
 ):
     return {person_id: "It exists"}
 
@@ -113,7 +121,8 @@ def update_person(
     ..., 
     title = "Person ID", 
     description = "This is de person ID", 
-    gt = 0
+    gt = 0,
+    example=123
     ),
     person: Person = Body(...),
     #location : Location = Body(...)
