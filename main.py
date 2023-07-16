@@ -73,6 +73,7 @@ def Home():
     return {"Hello": "world"}
 
 # correr proyecto en consola: uvicorn main:app --reload
+# visitar documentacion de la API: http://localhost:8000/docs#/
 
 # Request and Response Body
 @app.post("/person/new")
